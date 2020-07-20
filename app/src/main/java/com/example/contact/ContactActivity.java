@@ -1,25 +1,17 @@
 package com.example.contact;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ContactActivity extends AppCompatActivity {
 
@@ -45,7 +37,7 @@ public class ContactActivity extends AppCompatActivity {
                 intent.setAction("android.intent.action.PICK");
                 intent.addCategory("android.intent.category.DEFAULT");
                 intent.setType("vnd.android.cursor.dir/phone_v2");
-                startActivityForResult(intent,REQUEST_SELECT_CONTACT);
+                startActivityForResult(intent, REQUEST_SELECT_CONTACT);
             }
         });
     }
@@ -53,22 +45,22 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_SELECT_CONTACT){
-            if(data!=null){
+        if (requestCode == REQUEST_SELECT_CONTACT) {
+            if (data != null) {
                 Uri uri = data.getData();
 
                 ContentResolver contentResolver = getContentResolver();
-                Cursor cursor=null;
-                if(uri != null){
-                    cursor = contentResolver.query(uri,new String[]{"display_name","data1"},null,null,null);
+                Cursor cursor = null;
+                if (uri != null) {
+                    cursor = contentResolver.query(uri, new String[]{"display_name", "data1"}, null, null, null);
                 }
-                while (cursor.moveToNext()){
+                while (cursor.moveToNext()) {
                     username = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                     number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                 }
                 cursor.close();
 
-                userInfo.setText(username+" "+number);
+                userInfo.setText(username + " " + number);
             }
         }
     }
