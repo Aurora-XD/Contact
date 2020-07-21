@@ -16,8 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ContactActivity extends AppCompatActivity {
 
     static final int REQUEST_SELECT_CONTACT = 2;
-    private Button mButton2;
+    private Button mButtonContact;
     private TextView userInfo;
+
+    private Button mButtonLifeCycle;
 
     String username;
     String number;
@@ -27,10 +29,10 @@ public class ContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
-        mButton2 = findViewById(R.id.button_2);
+        mButtonContact = findViewById(R.id.button_contact);
         userInfo = findViewById(R.id.user_info);
 
-        mButton2.setOnClickListener(new View.OnClickListener() {
+        mButtonContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -38,6 +40,15 @@ public class ContactActivity extends AppCompatActivity {
                 intent.addCategory("android.intent.category.DEFAULT");
                 intent.setType("vnd.android.cursor.dir/phone_v2");
                 startActivityForResult(intent, REQUEST_SELECT_CONTACT);
+            }
+        });
+
+        mButtonLifeCycle = findViewById(R.id.button_lifecycle);
+        mButtonLifeCycle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ContactActivity.this, LifecycleActivity.class);
+                startActivity(intent);
             }
         });
     }

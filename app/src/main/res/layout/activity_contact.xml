@@ -7,10 +7,10 @@
     tools:context=".ContactActivity">
 
     <Button
-        android:id="@+id/button_2"
+        android:id="@+id/button_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_button_2"
+        android:text="@string/text_button_contact"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,14 +18,25 @@
         android:textAllCaps="false"
         android:paddingHorizontal="50dp"/>
 
+
+    <Button
+        android:id="@+id/button_lifecycle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/button_contact"
+        app:layout_constraintEnd_toEndOf="@id/button_contact"
+        app:layout_constraintTop_toBottomOf="@id/button_contact"
+        android:layout_marginTop="50dp"
+        android:text="@string/text_button_lifecylce"/>
+
     <TextView
         android:id="@+id/user_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorWithe"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/button_2"
-        app:layout_constraintTop_toBottomOf="@id/button_2"
+        app:layout_constraintStart_toStartOf="@id/button_contact"
+        app:layout_constraintTop_toBottomOf="@id/button_contact"
         android:layout_marginTop="250dp"
         android:background="@color/colorGray"/>
 
